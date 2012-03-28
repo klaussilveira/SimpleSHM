@@ -1,6 +1,6 @@
 <?php
 
-require('SimpleSHM.class.php');
+require('SimpleSHM.php');
 
 /**
  * Creating new block, with a random ID
