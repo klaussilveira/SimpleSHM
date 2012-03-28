@@ -1,5 +1,6 @@
 # SimpleSHM
 [![Build Status](https://secure.travis-ci.org/klaussilveira/SimpleSHM.png)](http://travis-ci.org/klaussilveira/SimpleSHM)
+
 SimpleSHM is a simple and small abstraction layer for shared memory manipulation using PHP. It makes use of the SHMOP functions, built into most PHP packages. 
 
 ## Authors and contributors
