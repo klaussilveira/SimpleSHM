@@ -110,15 +110,34 @@ class Block
      * Reads from a shared memory block
      *
      * @access public
+     * @param  $key string identifier
      * @return string The data read from the shared memory block
      */
+    public function read($key)
+    {
+        $key    = crc32($key);
+        $shm_id = shmop_open($key, "a", 0644, 0); 
+        
+        $size = shmop_size($shm_id);
+        $data = shmop_read($shm_id, 0, $size); // Now lets read the string back
+        
+        return $data;
+    }
+
+    /**
+     * Reads from a shared memory block
+     *
+     * @access public
+     * @return string The data read from the shared memory block
+     */
+     /*
     public function read()
     {
         $size = shmop_size($this->shmid);
         $data = shmop_read($this->shmid, 0, $size);
 
         return $data;
-    }
+    }*/
 
     /**
      * Mark a shared memory block for deletion
