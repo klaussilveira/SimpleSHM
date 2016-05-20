@@ -43,10 +43,10 @@ class Block
             $this->id = $this->generateID();
         } else {
             $this->id = $id;
+        }
 
-            if($this->exists($this->id)) {
-                $this->shmid = shmop_open($this->id, "w", 0, 0);
-            }
+        if($this->exists($this->id)) {
+            $this->shmid = shmop_open($this->id, "w", 0, 0);
         }
     }
 
@@ -54,11 +54,11 @@ class Block
      * Generates a random ID for a shared memory block
      *
      * @access protected
-     * @return int Randomly generated ID, between 1 and 65535
+     * @return int System V IPC key generated from pathname and a project identifier
      */
     protected function generateID()
     {
-        $id = mt_rand(1, 65535);
+        $id = ftok(__FILE__, "b");
         return $id;
     }
 
@@ -76,7 +76,6 @@ class Block
     public function exists($id)
     {
         $status = @shmop_open($id, "a", 0, 0);
-
         return $status;
     }
 
