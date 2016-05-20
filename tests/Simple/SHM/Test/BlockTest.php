@@ -34,4 +34,16 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $data = $memory->read();
         $this->assertEquals('Sample 2', $data);
     }
+
+    public function testIsPersistingNewBlockWithoutId()
+    {
+        $memory = new Block;
+        $this->assertInstanceOf('Simple\\SHM\\Block', $memory);
+        $memory->write('Sample 3');
+        unset($memory);
+
+        $memory = new Block;
+        $data = $memory->read();
+        $this->assertEquals('Sample 3', $data);
+    }
 }
